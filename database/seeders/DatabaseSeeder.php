@@ -26,7 +26,8 @@ class DatabaseSeeder extends Seeder
         Speaker::factory(50)->create();
         Talk::factory(50)->create();
         Venue::factory(25)->create();
-        // \App\Models\User::factory(10)->create();
+        Speaker::factory(25)->withTalks(1)->create();
+        //\App\Models\User::factory(10)->create();
         // // User::factory(10)->create();
         // User::factory()->create([
         //     'name' => 'Test User',
