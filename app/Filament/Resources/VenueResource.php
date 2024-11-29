@@ -2,18 +2,22 @@
 
 namespace App\Filament\Resources;
 
-use App\Enums\Region;
-use App\Filament\Resources\VenueResource\Pages;
-use App\Filament\Resources\VenueResource\RelationManagers;
-use App\Models\Venue;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use App\Enums\Region;
+use App\Models\Venue;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use Illuminate\Support\Collection;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ImageColumn;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\VenueResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-
+use Filament\Tables\Columns\SpatieMediaLibraryImageEntry;
+use App\Filament\Resources\VenueResource\RelationManagers;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 class VenueResource extends Resource
 {
     protected static ?string $model = Venue::class;
@@ -28,21 +32,26 @@ class VenueResource extends Resource
 
     public static function table(Table $table): Table
     {
+
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
+                SpatieMediaLibraryImageColumn::make('venue-images')
+                ->collection('venue-images')
+                ->height(100)
+                ->width(100),
+                TextColumn::make('name')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('city')
+                TextColumn::make('city')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('country')
+                TextColumn::make('country')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('postal_code')
+                TextColumn::make('postal_code')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
+                TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
+                TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
