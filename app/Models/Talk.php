@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Talk extends Model
 {
     use HasFactory;
-
+    protected $guarded = [];
     protected $casts = [
         'id' => 'integer',
         'speaker_id' => 'integer',
