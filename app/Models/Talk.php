@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Talk extends Model
 {
     use HasFactory;
-    protected $guarded = [];
+
     protected $casts = [
         'id' => 'integer',
         'speaker_id' => 'integer',
@@ -28,5 +28,21 @@ class Talk extends Model
     public function conferences(): BelongsToMany
     {
         return $this->belongsToMany(Conference::class);
+    }
+
+    public function approve(): void
+    {
+        $this->status = TalkStatus::APPROVED;
+
+        // email the speaker telling
+        $this->save();
+    }
+
+    public function reject(): void
+    {
+        $this->status = TalkStatus::REJECTED;
+
+        // email the speaker telling
+        $this->save();
     }
 }
