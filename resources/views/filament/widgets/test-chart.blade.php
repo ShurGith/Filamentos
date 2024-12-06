@@ -1,5 +1,5 @@
 <x-filament-widgets::widget>
     <x-filament::section>
-       Hollas dsa
+       {{ $this->callNotification() }}
     </x-filament::section>
 </x-filament-widgets::widget>
