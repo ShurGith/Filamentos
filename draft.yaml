@@ -1,0 +1,12 @@
+models:
+  Conference:
+  name: 'string:60'
+  description: text
+  start_date: datetime, end_date: datetime, is_published: boolean, status: string, region: string, venue_id: 'biginteger unsigned nullable' }
+  Speaker: { name: string, avatar: 'text nullable', email: string, qualifications: 'json nullable', bio: 'text nullable', twitter_handle: 'string nullable' }
+  Talk: { title: string, abstract: text, length: 'string default:Normal - 30 Minutes', status: 'string default:Submitted', new_talk: 'boolean default:1', speaker_id: 'integer unsigned' }
+  User: { name: string, email: string, email_verified_at: 'timestamp nullable', password: string, remember_token: 'string:100 nullable' }
+  Venue: { name: string, city: string, country: string, postal_code: string, region: string }
+
+controllers:
+  # ...
