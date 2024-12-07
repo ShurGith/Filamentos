@@ -116,3 +116,53 @@
     filter: blur(8px);
     transform: rotate(330deg);
 }
+
+
+.menu-animacion {
+    --translate-linea1: 0 -12px;
+    --translate-linea3: 0 12px;
+    --rotate-linea1: 0;
+    --rotate-linea3:0;
+    --opacity-linea2: 1;
+    display: grid;
+    grid-template-areas: "lineas";
+    align-items: center;
+    width: max-content;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    --transition-lineas: translate .4s .3s, rotate .4s, opacity .3s .3s ;
+}
+
+
+.menu-animacion:hover{
+    --translate-linea1: 0 0;
+    --translate-linea3: 0 0;
+    --rotate-linea1: 45deg;
+    --rotate-linea3: -45deg;
+    --transition-lineas: translate .4s, rotate .4s .4s, opacity .4s .3s;
+    --opacity-linea2: 0;
+
+}
+.linea{
+    background: #fff;
+    width: 60px;
+    height: 4px;
+    border-radius: 10px;
+    grid-area: lineas;
+    transition: var(--transition-lineas);
+}
+
+.linea1{
+   translate: var(--translate-linea1);
+    rotate:var(--rotate-linea1);
+}
+.linea2{
+    opacity: var(--opacity-linea2);
+}
+
+.linea3{
+    translate: var(--translate-linea3);
+    rotate:var(--rotate-linea3);
+
+}

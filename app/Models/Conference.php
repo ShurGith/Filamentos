@@ -31,6 +31,8 @@ class Conference extends Model
         'venue_id' => 'integer',
     ];
 
+    
+
     public function venue(): BelongsTo
     {
         return $this->belongsTo(Venue::class);
