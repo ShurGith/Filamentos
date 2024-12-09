@@ -16,7 +16,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-include '../app/Enums/Grupos.php';
 class AttendeeResource extends Resource
 {
     protected static ?string $model = Attendee::class;

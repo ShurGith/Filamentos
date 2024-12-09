@@ -23,6 +23,7 @@ use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
+use pxlrbt\FilamentEnvironmentIndicator\EnvironmentIndicatorPlugin;
 
 class AppPanelProvider extends PanelProvider
 {
@@ -72,7 +73,18 @@ class AppPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+          ->plugins([
+
+            EnvironmentIndicatorPlugin::make()
+              ->color(fn () => match (app()->environment()) {
+                'production' => null,
+                'staging' => Color::Orange,
+                'local' => Color::Yellow,
+                'testing' => Color::Indigo,
+                 default => Color::Blue,
+              })
+          ]);
     }
     public function register(): void
     {
