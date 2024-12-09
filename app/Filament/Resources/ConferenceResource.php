@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Enums\Region;
 use App\Filament\Resources\ConferenceResource\Pages;
 use App\Filament\Resources\ConferenceResource\RelationManagers;
+use App\Models\Attendee;
 use App\Models\Conference;
 use App\Models\Speaker;
 use App\Models\Venue;
@@ -19,9 +20,18 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class ConferenceResource extends Resource
 {
     protected static ?string $model = Conference::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-bottom-center-text';
-
+  protected static ?string $navigationGroup = 'Primer Grupo';
+  protected static ?string $recordTitleAttribute = 'name';
+//    protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-bottom-center-text';
+  public static function getNavigationBadge(): ?string
+  {
+        return static::getModel()::count();
+//    return Conference::count();
+  }
+  public static function getNavigationBadgeColor():string
+  {
+    return 'success';
+  }
     public static function form(Form $form): Form
     {
         return $form

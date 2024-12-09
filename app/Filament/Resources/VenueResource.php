@@ -22,8 +22,19 @@ class VenueResource extends Resource
 {
     protected static ?string $model = Venue::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-map-pin';
+//    protected static ?string $navigationIcon = 'heroicon-o-map-pin';
+  protected static ?string $navigationGroup = 'Primer Grupo';
+  protected static ?string $recordTitleAttribute = 'name';
 
+
+  public static function getNavigationBadge(): ?string
+  {
+    return static::getModel()::count();
+  }
+  public static function getNavigationBadgeColor():string
+  {
+    return 'success';
+  }
     public static function form(Form $form): Form
     {
         return $form

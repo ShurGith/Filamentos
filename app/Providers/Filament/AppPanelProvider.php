@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use Filament\Navigation\NavigationGroup;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\Widgets;
@@ -28,16 +29,28 @@ class AppPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
-            ->default()
-            ->id('app')
-            ->path('/app')
-            ->login()
+          ->default()
+          ->id('app')
+          ->path('/app')
+          ->login()
+          ->registration()
+          ->passwordReset()
+          ->emailVerification()
+          ->brandName('Mi Conferencia')
+//          ->darkMode(true)
+            ->sidebarCollapsibleOnDesktop()
+//          ->sidebarFullyCollapsibleOnDesktop()
             ->colors([
                 'primary' => Color::Indigo,
-//                'gray' => Color::Green,
+                'gray' => Color::Slate,
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
+            ->navigationGroups([
+                NavigationGroup::make('Primer Grupo')->icon('heroicon-o-cake'),
+                NavigationGroup::make('Segundo Grupo')->icon('heroicon-o-bolt'),
+              ]
+            )
             ->pages([
                 Pages\Dashboard::class,
             ])

@@ -22,8 +22,19 @@ class TalkResource extends Resource
 {
     protected static ?string $model = Talk::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+//    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+  protected static ?string $navigationGroup = 'Segundo Grupo';
+  //protected static ?string $recordTitleAttribute = 'name';
+
+  public static function getNavigationBadge(): ?string
+  {
+    return static::getModel()::count();
+  }
+  public static function getNavigationBadgeColor():string
+  {
+    return 'success';
+  }
     public static function form(Form $form): Form
     {
         return $form
